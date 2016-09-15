@@ -440,8 +440,6 @@ CwndChange (std::string context, uint32_t oldCwnd, uint32_t newCwnd)
 
 int main (int argc, char *argv[])
 {
-
-  //int workloadid;
   char workload[200], topofile[200], endhostfile[200];
   uint32_t initcwnd_base = 1;
   double endtime = 5;
@@ -453,8 +451,6 @@ int main (int argc, char *argv[])
   double backgrounddrop = 0;
   uint32_t prioritySlots = 4;
 
-
-
   Packet::EnableChecking();
   //LogComponentEnable ("Ipv4GlobalRouting", LOG_LEVEL_INFO);
   //LogComponentEnable ("Ipv4StaticRouting", LOG_LEVEL_INFO);
@@ -462,8 +458,6 @@ int main (int argc, char *argv[])
   //LogComponentEnable ("TcpRC3Sack", LOG_LEVEL_ALL);
   //LogComponentEnable ("TcpTxBuffer", LOG_LEVEL_ALL);  
   
-
- 
   
   CommandLine cmd;
   cmd.AddValue("workload", "Workload", workload);
@@ -501,8 +495,10 @@ int main (int argc, char *argv[])
 
   int err;
 
-
-
+  if (!fp || !fp2) {
+      puts("Error opening files.");
+      return -1;
+  }
 
   
   //reading topology
