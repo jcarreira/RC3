@@ -123,14 +123,14 @@ UanMacCw::Enqueue (Ptr<Packet> packet, const Address &dest, uint16_t protocolNum
     {
     case CCABUSY:
       NS_LOG_DEBUG ("Time " << Simulator::Now ().GetSeconds () << " MAC " << GetAddress () << " Starting enqueue CCABUSY");
-      if (m_txEndEvent.IsRunning () == TX)
-        {
-          NS_LOG_DEBUG ("State is TX");
-        }
-      else
-        {
-          NS_LOG_DEBUG ("State is not TX");
-        }
+      //if (m_txEndEvent.IsRunning () == TX)
+      //  {
+      //    NS_LOG_DEBUG ("State is TX");
+      //  }
+      //else
+      //  {
+      //    NS_LOG_DEBUG ("State is not TX");
+      //  }
 
       NS_ASSERT (m_phy->GetTransducer ()->GetArrivalList ().size () >= 1 || m_phy->IsStateTx ());
       return false;
