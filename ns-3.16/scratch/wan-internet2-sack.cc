@@ -255,7 +255,7 @@ void TcpReceiver::DoDispose (void)
 // Application Methods
 void TcpReceiver::StartApplication ()    // Called at time specified by Start
 {
-    std::cout << "TcpReceiver started " << std::endl;
+//    std::cout << "TcpReceiver started " << std::endl;
     NS_LOG_FUNCTION (this);
     // Create the socket if not already
     if (!m_socket)
@@ -465,7 +465,7 @@ int main (int argc, char *argv[])
 {
     char workload[200], topofile[200], endhostfile[200];
     uint32_t initcwnd_base = 1;
-    double endtime = 10;
+    double endtime = 0.1;
     uint32_t bufsize = 50000000;
     bool useP2 = 0;
     bool multipriorities = 0;
@@ -736,8 +736,9 @@ int main (int argc, char *argv[])
             recvapp1[i]->SetStartTime(Seconds(0.));
             recvapp1[i]->SetStopTime(Seconds(endtime));
         } else {
-            puts("Start time after endtime");
-            return -1;
+            //ignore entry
+            //puts("Start time after endtime");
+            //return -1;
         }
     }
 
@@ -755,6 +756,8 @@ int main (int argc, char *argv[])
     //pointToPoint.EnableAsciiAll(ascii.CreateFileStream("tcptopo.tr"));
     //pointToPoint.EnablePcapAll("tcptopo");
     Simulator::Stop(Seconds(endtime));
+
+    std::cout << "Starting simulation" << std::endl;
     Simulator::Run ();
     //flowmon->SerializeToXmlFile ("tcptopo.flowmon", false, false);
     Simulator::Destroy ();
@@ -771,3 +774,5 @@ int main (int argc, char *argv[])
 
     return 0;
 }
+
+
